@@ -1,5 +1,6 @@
 package br.com.jonatas.forum.Controller;
 
+import br.com.jonatas.forum.Controller.Dto.TopicoDTO;
 import br.com.jonatas.forum.Model.Curso;
 import br.com.jonatas.forum.Model.Topico;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,7 +13,7 @@ import java.util.List;
 public class TopicosController {
 
     @RequestMapping("/topicos")
-    public List<Topico> lista(){
+    public List<TopicoDTO> lista(){
         Topico topico = new Topico("Duvida", "Duvida com spring", new Curso("Spring",
                 "Programacao"));
 
