@@ -3,6 +3,8 @@ package br.com.jonatas.forum.Controller.Dto;
 import br.com.jonatas.forum.Model.Topico;
 
 import java.time.LocalDateTime;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class TopicoDTO {
 
@@ -48,5 +50,9 @@ public class TopicoDTO {
 
     public void setDataCriacao(LocalDateTime dataCriacao) {
         this.dataCriacao = dataCriacao;
+    }
+
+    public static List<TopicoDTO> converter(List<Topico> topicos) {
+        return topicos.stream().map(TopicoDTO::new).collect(Collectors.toList());
     }
 }

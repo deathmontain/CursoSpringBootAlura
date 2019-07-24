@@ -17,6 +17,6 @@ public class TopicosController {
         Topico topico = new Topico("Duvida", "Duvida com spring", new Curso("Spring",
                 "Programacao"));
 
-        return Arrays.asList(topico);
+        return TopicoDTO.converter(Arrays.asList(topico));
     }
 }
