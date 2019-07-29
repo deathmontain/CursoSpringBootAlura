@@ -1,15 +1,14 @@
 package br.com.jonatas.forum.Controller.Dto;
 
 import br.com.jonatas.forum.Model.Topico;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@Getter
-@Setter
+
+@Data
 public class TopicoDTO {
 
     private Long id;

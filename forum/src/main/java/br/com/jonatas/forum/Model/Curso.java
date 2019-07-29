@@ -1,5 +1,6 @@
 package br.com.jonatas.forum.Model;
 
+import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -10,9 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-@EqualsAndHashCode
-@Getter
-@Setter
+@Data
 public class Curso {
 
 	@Id

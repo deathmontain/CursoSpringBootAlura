@@ -1,16 +1,12 @@
 package br.com.jonatas.forum.Model;
 
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
-@EqualsAndHashCode
-@Getter
-@Setter
+@Data
 public class Resposta {
 
 	@Id

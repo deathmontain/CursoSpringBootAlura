@@ -1,8 +1,7 @@
 package br.com.jonatas.forum.Model;
 
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -10,9 +9,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@EqualsAndHashCode
-@Getter
-@Setter
+@NoArgsConstructor
+@Data
 public class Topico {
 
 	@Id
@@ -29,9 +27,6 @@ public class Topico {
 	private Curso curso;
 	@OneToMany(mappedBy = "topico")
 	private List<Resposta> respostas = new ArrayList<>();
-
-	public Topico() {
-	}
 
 	public Topico(String titulo, String mensagem, Curso curso) {
 		this.titulo = titulo;
