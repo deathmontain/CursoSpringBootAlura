@@ -1,6 +1,6 @@
-package br.com.jonatas.forum.Repository;
+package br.com.jonatas.forum.repository;
 
-import br.com.jonatas.forum.Model.Topico;
+import br.com.jonatas.forum.model.Topico;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;

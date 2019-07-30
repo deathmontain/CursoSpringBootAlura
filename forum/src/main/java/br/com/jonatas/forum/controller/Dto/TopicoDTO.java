@@ -1,6 +1,6 @@
-package br.com.jonatas.forum.Controller.Dto;
+package br.com.jonatas.forum.controller.Dto;
 
-import br.com.jonatas.forum.Model.Topico;
+import br.com.jonatas.forum.model.Topico;
 import lombok.Data;
 
 import java.time.LocalDateTime;

@@ -1,15 +1,16 @@
-package br.com.jonatas.forum.Controller;
+package br.com.jonatas.forum.controller;
 
-import br.com.jonatas.forum.Controller.Dto.TopicoDTO;
-import br.com.jonatas.forum.Controller.Form.TopicoForm;
-import br.com.jonatas.forum.Model.Topico;
-import br.com.jonatas.forum.Repository.CursoRepository;
-import br.com.jonatas.forum.Repository.TopicoRepository;
+import br.com.jonatas.forum.controller.Dto.TopicoDTO;
+import br.com.jonatas.forum.controller.Form.TopicoForm;
+import br.com.jonatas.forum.model.Topico;
+import br.com.jonatas.forum.repository.CursoRepository;
+import br.com.jonatas.forum.repository.TopicoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import javax.validation.Valid;
 import java.net.URI;
 import java.util.List;
 
@@ -35,7 +36,7 @@ public class TopicosController {
     }
 
     @PostMapping
-    public ResponseEntity<TopicoDTO> cadastrar(@RequestBody TopicoForm topicoForm, UriComponentsBuilder uriBuilder){
+    public ResponseEntity<TopicoDTO> cadastrar(@RequestBody @Valid TopicoForm topicoForm, UriComponentsBuilder uriBuilder){
         Topico topico = topicoForm.converter(cursoRepository);
         topicoRepository.save(topico);
 

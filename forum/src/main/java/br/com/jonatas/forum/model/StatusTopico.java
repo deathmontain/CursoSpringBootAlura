@@ -1,4 +1,4 @@
-package br.com.jonatas.forum.Model;
+package br.com.jonatas.forum.model;
 
 public enum StatusTopico {
 	

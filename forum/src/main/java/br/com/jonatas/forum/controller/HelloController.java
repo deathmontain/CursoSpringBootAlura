@@ -1,4 +1,4 @@
-package br.com.jonatas.forum.Controller;
+package br.com.jonatas.forum.controller;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;

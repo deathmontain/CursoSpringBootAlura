@@ -1,4 +1,4 @@
-package br.com.jonatas.forum.Model;
+package br.com.jonatas.forum.model;
 
 import lombok.Data;
 
@@ -9,11 +9,11 @@ import javax.persistence.Id;
 
 @Entity
 @Data
-public class Usuario {
+public class Curso {
 
-	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String nome;
-	private String email;
-	private String senha;
+	private String categoria;
 }
