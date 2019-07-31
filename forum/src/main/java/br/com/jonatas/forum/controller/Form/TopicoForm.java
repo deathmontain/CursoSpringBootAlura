@@ -6,7 +6,6 @@ import br.com.jonatas.forum.repository.CursoRepository;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.validator.constraints.Length;
-
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 

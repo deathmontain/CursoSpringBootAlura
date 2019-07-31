@@ -1,6 +1,7 @@
 package br.com.jonatas.forum.controller;
 
-import br.com.jonatas.forum.controller.Dto.TopicoDTO;
+import br.com.jonatas.forum.controller.Dto.DetalheDoTopicoDto;
+import br.com.jonatas.forum.controller.Dto.TopicoDto;
 import br.com.jonatas.forum.controller.Form.TopicoForm;
 import br.com.jonatas.forum.model.Topico;
 import br.com.jonatas.forum.repository.CursoRepository;
@@ -25,23 +26,29 @@ public class TopicosController {
     private CursoRepository cursoRepository;
 
     @GetMapping
-    public List<TopicoDTO> lista(String nomeCurso){
+    public List<TopicoDto> lista(String nomeCurso){
         if (nomeCurso == null){
             List<Topico> topicos = topicoRepository.findAll();
-            return TopicoDTO.converter(topicos);
+            return TopicoDto.converter(topicos);
         }else{
             List<Topico> topicos = topicoRepository.findByCurso_Nome(nomeCurso);
-            return TopicoDTO.converter(topicos);
+            return TopicoDto.converter(topicos);
         }
     }
 
     @PostMapping
-    public ResponseEntity<TopicoDTO> cadastrar(@RequestBody @Valid TopicoForm topicoForm, UriComponentsBuilder uriBuilder){
+    public ResponseEntity<TopicoDto> cadastrar(@RequestBody @Valid TopicoForm topicoForm, UriComponentsBuilder uriBuilder){
         Topico topico = topicoForm.converter(cursoRepository);
         topicoRepository.save(topico);
 
         URI uri = uriBuilder.path("/topicos/{id}").buildAndExpand(topico.getId()).toUri();
 
-        return ResponseEntity.created(uri).body(new TopicoDTO(topico));
+        return ResponseEntity.created(uri).body(new TopicoDto(topico));
+    }
+
+    @GetMapping("/{id}")
+    public DetalheDoTopicoDto detalhar(@PathVariable Long id){
+        Topico topico = topicoRepository.getOne(id);
+        return new DetalheDoTopicoDto(topico);
     }
 }
