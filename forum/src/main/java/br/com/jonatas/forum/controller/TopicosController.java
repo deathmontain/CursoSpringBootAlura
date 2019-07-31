@@ -2,6 +2,7 @@ package br.com.jonatas.forum.controller;
 
 import br.com.jonatas.forum.controller.Dto.DetalheDoTopicoDto;
 import br.com.jonatas.forum.controller.Dto.TopicoDto;
+import br.com.jonatas.forum.controller.Form.AtualizacaoTopicoForm;
 import br.com.jonatas.forum.controller.Form.TopicoForm;
 import br.com.jonatas.forum.model.Topico;
 import br.com.jonatas.forum.repository.CursoRepository;
@@ -50,5 +51,12 @@ public class TopicosController {
     public DetalheDoTopicoDto detalhar(@PathVariable Long id){
         Topico topico = topicoRepository.getOne(id);
         return new DetalheDoTopicoDto(topico);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<TopicoDto> atualizar(@PathVariable Long id, @RequestBody @Valid AtualizacaoTopicoForm form){
+        Topico topico = form.atualizar(id, topicoRepository);
+
+        return ResponseEntity.ok(new TopicoDto(topico));
     }
 }
