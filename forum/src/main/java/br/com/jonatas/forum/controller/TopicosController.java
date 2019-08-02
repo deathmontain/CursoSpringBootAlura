@@ -16,6 +16,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 import javax.validation.Valid;
 import java.net.URI;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/topicos")
@@ -39,6 +40,7 @@ public class TopicosController {
     }
 
     @PostMapping
+    @Transactional
     public ResponseEntity<TopicoDto> cadastrar(@RequestBody @Valid TopicoForm topicoForm, UriComponentsBuilder uriBuilder){
         Topico topico = topicoForm.converter(cursoRepository);
         topicoRepository.save(topico);
@@ -49,16 +51,39 @@ public class TopicosController {
     }
 
     @GetMapping("/{id}")
-    public DetalheDoTopicoDto detalhar(@PathVariable Long id){
-        Topico topico = topicoRepository.getOne(id);
-        return new DetalheDoTopicoDto(topico);
+    public ResponseEntity<DetalheDoTopicoDto> detalhar(@PathVariable Long id){
+        Optional<Topico> optional = topicoRepository.findById(id);
+
+        if(optional.isPresent()){
+            return ResponseEntity.ok(new DetalheDoTopicoDto(optional.get()));
+        }
+
+        return ResponseEntity.notFound().build();
     }
 
     @PutMapping("/{id}")
     @Transactional
     public ResponseEntity<TopicoDto> atualizar(@PathVariable Long id, @RequestBody @Valid AtualizacaoTopicoForm form){
-        Topico topico = form.atualizar(id, topicoRepository);
+        Optional<Topico> optional = topicoRepository.findById(id);
 
-        return ResponseEntity.ok(new TopicoDto(topico));
+        if(optional.isPresent()){
+            Topico topico = form.atualizar(id, topicoRepository);
+            return ResponseEntity.ok(new TopicoDto(topico));
+        }
+
+        return ResponseEntity.notFound().build();
+    }
+
+    @DeleteMapping("/{id}")
+    @Transactional
+    public ResponseEntity<?> remover(@PathVariable Long id) {
+        Optional<Topico> optional = topicoRepository.findById(id);
+
+        if (optional.isPresent()) {
+            topicoRepository.deleteById(id);
+            return ResponseEntity.ok().build();
+        }
+
+        return ResponseEntity.notFound().build();
     }
 }

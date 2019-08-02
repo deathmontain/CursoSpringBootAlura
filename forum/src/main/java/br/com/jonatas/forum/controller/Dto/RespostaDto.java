@@ -2,7 +2,6 @@ package br.com.jonatas.forum.controller.Dto;
 
 import br.com.jonatas.forum.model.Resposta;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
